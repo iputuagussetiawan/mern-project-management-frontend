@@ -8,7 +8,9 @@ export const loginMutationFn = async (data:loginType):Promise<LoginResponseType>
 
 export const registerMutationFn = async (data:registerType) => await API.post("/auth/register", data);
 
-export const logoutMutationFn = async () => {};
+export const logoutMutationFn = async () => {
+  await API.post("/auth/logout");
+};
 
 export const getCurrentUserQueryFn =
   async (): Promise<CurrentUserResponseType> => {

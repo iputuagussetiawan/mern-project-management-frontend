@@ -6,13 +6,11 @@ import { UserType } from "@/types/api.type";
 
 // Define the context shape
 type AuthContextType = {
- user?:UserType
- error:any;
- isLoading: boolean;
- isFetching:boolean;
- refetchAuth:()=>void;
-
-
+  user?:UserType
+  error:any;
+  isLoading: boolean;
+  isFetching:boolean;
+  refetchAuth:()=>void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
