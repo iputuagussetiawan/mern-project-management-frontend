@@ -69,8 +69,7 @@ export default function CreateWorkspaceForm({onClose}:{onClose:()=>void}) {
       <div className="h-full px-10 py-10 flex-1">
         <div className="mb-5">
           <h1
-            className="text-2xl tracking-[-0.16px] dark:text-[#fcfdffef] font-semibold mb-1.5
-           text-center sm:text-left"
+            className="text-2xl tracking-[-0.16px] dark:text-[#fcfdffef] font-semibold mb-1.5 text-center sm:text-left"
           >
             Let's build a Workspace
           </h1>
