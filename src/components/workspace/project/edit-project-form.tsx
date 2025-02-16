@@ -30,12 +30,13 @@ export default function EditProjectForm(props: {
   project?: ProjectType;
   onClose: () => void;
 }) {
-  const { project,onClose } = props;
+  const { project, onClose } = props;
   const workspaceId = useWorkspaceId();
-  const projectId=project?._id as string;
   const queryClient = useQueryClient();
 
   const [emoji, setEmoji] = useState("📊");
+
+  const projectId = project?._id as string;
 
   const formSchema = z.object({
     name: z.string().trim().min(1, {
@@ -44,9 +45,9 @@ export default function EditProjectForm(props: {
     description: z.string().trim(),
   });
 
-  const {mutate, isPending}=useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: editProjectMutationFn,
-  })
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -62,43 +63,44 @@ export default function EditProjectForm(props: {
       form.setValue("name", project.name);
       form.setValue("description", project.description);
     }
-  }, [form,project]);
+  }, [form, project]);
 
   const handleEmojiSelection = (emoji: string) => {
     setEmoji(emoji);
   };
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    if(isPending) return;
-    const payload={
+    if (isPending) return;
+    const payload = {
       projectId,
       workspaceId,
-      data:{emoji, ...values}
-    }
-    mutate(payload,{
-      onSuccess: () => {
+      data: { emoji, ...values },
+    };
+    mutate(payload, {
+      onSuccess: (data) => {
         queryClient.invalidateQueries({
           queryKey:["singleProject", projectId]
         });
         queryClient.invalidateQueries({
           queryKey:["allprojects", workspaceId]
         })
+
         toast({
-          title:"Success",
-          description:"Project updated successfully",
-          variant:"success"
-        })
-        setTimeout(()=>onClose(),100)
+          title: "Success",
+          description: data.message,
+          variant: "success",
+        });
+
+        setTimeout(() => onClose(), 100);
       },
       onError: (error) => {
         toast({
-          title:"Error",
-          description:error.message,
-          variant:"destructive"
-        })
-      }
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      },
     });
-    onClose();
   };
 
   return (
@@ -182,7 +184,7 @@ export default function EditProjectForm(props: {
               className="flex place-self-end  h-[40px] text-white font-semibold"
               type="submit"
             >
-              {isPending && <Loader className="w-4 h-4 animate-spin"/>}
+              {isPending && <Loader className="animate-spin" />}
               Update
             </Button>
           </form>
