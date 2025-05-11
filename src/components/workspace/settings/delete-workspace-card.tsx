@@ -9,7 +9,7 @@ import { toast } from "@/hooks/use-toast";
 import useWorkspaceId from "@/hooks/use-workspace-id";
 import { deleteWorkspaceMutationFn } from "@/lib/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { on } from "events";
+// import { on } from "events";
 import { useNavigate } from "react-router-dom";
 
 const DeleteWorkspaceCard = () => {

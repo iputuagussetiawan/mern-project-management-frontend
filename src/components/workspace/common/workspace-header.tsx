@@ -3,7 +3,7 @@ import { useAuthContext } from "@/context/auth-provider";
 import { Loader } from "lucide-react";
 
 const WorkspaceHeader = () => {
-  const isLoading = false;
+  // const isLoading = false;
   const {workspaceLoading,workspace}=useAuthContext();
 
   return (

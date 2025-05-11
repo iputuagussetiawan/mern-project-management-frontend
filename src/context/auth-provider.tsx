@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect } from "react";
 import useWorkspaceId from "@/hooks/use-workspace-id";
 import useAuth from "@/hooks/api/use-auth";
 import { UserType, WorkspaceType } from "@/types/api.type";
-import { getWorkspaceByIdQueryFn } from "@/lib/api";
+// import { getWorkspaceByIdQueryFn } from "@/lib/api";
 import useGetWorkspaceQuery from "@/hooks/api/use-get-workspace";
 import { useNavigate } from "react-router-dom";
 import usePermissions from "@/hooks/use-permissions";
